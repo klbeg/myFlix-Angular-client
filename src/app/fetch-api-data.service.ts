@@ -20,19 +20,19 @@ export class UserRegistrationService {
   //  this.http
   constructor(private http: HttpClient) {}
 
-  //  Making the api call for the user registration endpoint
+  //  user registration
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http
-      .post(apiUrl + 'users', userDetails)
+      .post(apiUrl + '/users', userDetails)
       .pipe(catchError(this.handleError));
   }
 
   //  user login
-  public userLogin(username: any, password: any): Observable<any> {
-    console.log(`username: ${username}  &  password${password}`);
+  public userLogin(Username: any, Password: any): Observable<any> {
+    console.log(`Username: ${Username}  &  Password: ${Password}`);
     return this.http
-      .post(apiUrl + '/login', { username, password })
+      .post(apiUrl + '/login', { Username, Password })
       .pipe(catchError(this.handleError));
   }
 
