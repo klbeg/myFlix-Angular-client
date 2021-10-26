@@ -3,12 +3,20 @@
   <button
     mat-raised-button
     (click)="openUserRegistrationDialog()"
-    style="margin-right: 10px"
+    style="margin-right: 10px; margin-left: 10px"
     color="primary"
   >
     Sign Up
   </button>
-  <button mat-raised-button color="primary" (click)="openUserLoginDialog()">
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="openUserLoginDialog()"
+    style="margin-right: 10px"
+  >
     Login
+  </button>
+  <button mat-raised-button color="primary" (click)="openMoviesDialog()">
+    All Movies
   </button>
 </div>

@@ -49,7 +49,7 @@ export class UserRegistrationService {
         //  no compliation error, but pretty sure this is still wrong
         //  original code was -- map(this.extractResponseData), --
         //  is map the same as Array.prototype.map() ??
-        map(() => this.extractResponseData),
+        map(this.extractResponseData),
         catchError(this.handleError)
       );
   }
@@ -64,10 +64,7 @@ export class UserRegistrationService {
           Authorization: 'Bearer ' + token,
         }),
       })
-      .pipe(
-        map(() => this.extractResponseData),
-        catchError(this.handleError)
-      );
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
   //  get director info
@@ -80,10 +77,7 @@ export class UserRegistrationService {
           Authorization: 'Bearer ' + token,
         }),
       })
-      .pipe(
-        map(() => this.extractResponseData),
-        catchError(this.handleError)
-      );
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
   //  get movie genre
@@ -96,10 +90,7 @@ export class UserRegistrationService {
           Authorization: 'Bearer ' + token,
         }),
       })
-      .pipe(
-        map(() => this.extractResponseData),
-        catchError(this.handleError)
-      );
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
   //  get user by username
@@ -112,10 +103,7 @@ export class UserRegistrationService {
           Authorization: 'Bearer ' + token,
         }),
       })
-      .pipe(
-        map(() => this.extractResponseData),
-        catchError(this.handleError)
-      );
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
   //
   //
@@ -136,10 +124,7 @@ export class UserRegistrationService {
             Authorization: 'Bearer ' + token,
           }),
         })
-        .pipe(
-          map(() => this.extractResponseData),
-          catchError(this.handleError)
-        )
+        .pipe(map(this.extractResponseData), catchError(this.handleError))
     );
   }
 
@@ -153,10 +138,7 @@ export class UserRegistrationService {
           Authorization: 'Bearer ' + token,
         }),
       })
-      .pipe(
-        map(() => this.extractResponseData),
-        catchError(this.handleError)
-      );
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
   //  delete movie from user's favorites
@@ -169,10 +151,7 @@ export class UserRegistrationService {
           Authorization: 'Bearer ' + token,
         }),
       })
-      .pipe(
-        map(() => this.extractResponseData),
-        catchError(this.handleError)
-      );
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
   //  edit user's info ** DOES NOT INCLUDE PASSWORD
@@ -186,10 +165,7 @@ export class UserRegistrationService {
         }),
         updateInfo,
       })
-      .pipe(
-        map(() => this.extractResponseData),
-        catchError(this.handleError)
-      );
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
   //  update user's password
@@ -203,10 +179,7 @@ export class UserRegistrationService {
         }),
         newPassword,
       })
-      .pipe(
-        map(() => this.extractResponseData),
-        catchError(this.handleError)
-      );
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
   //  delete user's account
@@ -219,14 +192,12 @@ export class UserRegistrationService {
           Authorization: 'Bearer ' + token,
         }),
       })
-      .pipe(
-        map(() => this.extractResponseData),
-        catchError(this.handleError)
-      );
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
   // Non-typed response extraction
-  private extractResponseData(res: Response): any {
+  private extractResponseData(res: any | object): any {
+    console.log(res);
     const body = res;
     return body || {};
   }
