@@ -16,21 +16,9 @@ export class AppComponent {
 
   constructor(public dialog: MatDialog) {}
 
-  openUserLoginDialog(): void {
-    this.dialog.open(UserLoginFormComponent, {
-      width: '280px',
-    });
-  }
-
-  openUserRegistrationDialog(): void {
-    this.dialog.open(UserRegistrationFormComponent, {
-      width: '280px',
-    });
-  }
-
-  openMoviesDialog(): void {
-    this.dialog.open(MovieCardComponent, {
-      width: '500px',
-    });
-  }
+  // openMoviesDialog(): void {
+  //   this.dialog.open(MovieCardComponent, {
+  //     width: '500px',
+  //   });
+  // }
 }
