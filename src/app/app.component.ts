@@ -15,10 +15,4 @@ export class AppComponent {
   title = 'myFlix-Angular-client';
 
   constructor(public dialog: MatDialog) {}
-
-  // openMoviesDialog(): void {
-  //   this.dialog.open(MovieCardComponent, {
-  //     width: '500px',
-  //   });
-  // }
 }

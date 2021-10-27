@@ -20,6 +20,7 @@ import { UserRegistrationFormComponent } from './user-registration-form/user-reg
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { MatIconModule } from '@angular/material/icon';
 
 //  Declaring routes
 const appRoutes: Routes = [
@@ -58,6 +59,7 @@ const appRoutes: Routes = [
     MatDialogModule,
     MatSnackBarModule,
     FormsModule,
+    MatIconModule,
     RouterModule.forRoot(appRoutes),
   ],
   providers: [],
