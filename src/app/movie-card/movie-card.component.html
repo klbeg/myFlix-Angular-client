@@ -5,9 +5,27 @@
       <mat-card-title>{{ movie.Title }}</mat-card-title>
       <mat-card-subtitle><img src="{{ movie.ImagePath }}" /></mat-card-subtitle>
       <mat-card-actions>
-        <button mat-raised-button color="primary">Genre</button>
-        <button mat-raised-button color="primary">Director</button>
-        <button mat-raised-button color="primary">Synopsis</button>
+        <button
+          (click)="openGenreDialog(movie.Genre)"
+          mat-raised-button
+          color="primary"
+        >
+          Genre
+        </button>
+        <button
+          (click)="openDirectorDialog(movie.Director)"
+          mat-raised-button
+          color="primary"
+        >
+          Director
+        </button>
+        <button
+          (click)="openSynopsisDialog(movie.Description)"
+          mat-raised-button
+          color="primary"
+        >
+          Synopsis
+        </button>
         <mat-icon>favorite_border</mat-icon>
       </mat-card-actions>
     </mat-dialog-content>
