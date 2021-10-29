@@ -30,7 +30,6 @@ export class UserLoginFormComponent implements OnInit {
       .userLogin(this.userData.Username, this.userData.Password)
       .subscribe(
         (result) => {
-          console.log('result.user: ', result.user);
           localStorage.setItem('token', result.token);
           localStorage.setItem('user', JSON.stringify(result.user));
           this.router.navigate(['movies']);

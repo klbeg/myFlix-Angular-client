@@ -197,7 +197,6 @@ export class UserRegistrationService {
 
   // Non-typed response extraction
   private extractResponseData(res: any | object): any {
-    console.log(res);
     const body = res;
     return body || {};
   }
