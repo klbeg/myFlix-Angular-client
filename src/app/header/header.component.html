@@ -5,10 +5,22 @@
       <nav>
         <ul class="nav-ul">
           <li>
-            <button mat-raised-button color="primary">Home</button>
+            <a
+              routerLink="/movies"
+              routerLinkActive="active"
+              mat-raised-button
+              color="primary"
+              >Home</a
+            >
           </li>
           <li>
-            <button mat-raised-button color="primary">Profile</button>
+            <a
+              routerLink="/profile"
+              routerLinkActive="active"
+              mat-raised-button
+              color="primary"
+              >Profile</a
+            >
           </li>
           <li>
             <button mat-raised-button color="primary">Sign Out</button>
@@ -18,3 +30,4 @@
     </div>
   </mat-toolbar>
 </div>
+<router-outlet></router-outlet>

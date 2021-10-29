@@ -23,6 +23,7 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { HeaderComponent } from './header/header.component';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
 
 //  Declaring routes
 const appRoutes: Routes = [
@@ -39,6 +40,10 @@ const appRoutes: Routes = [
     redirectTo: 'welcome',
     pathMatch: 'prefix',
   },
+  {
+    path: 'profile',
+    component: ProfileViewComponent,
+  },
 ];
 
 @NgModule({
@@ -49,6 +54,7 @@ const appRoutes: Routes = [
     MovieCardComponent,
     WelcomePageComponent,
     HeaderComponent,
+    ProfileViewComponent,
   ],
   imports: [
     BrowserModule,
