@@ -10,8 +10,9 @@
               routerLinkActive="active"
               mat-raised-button
               color="primary"
-              >Home</a
             >
+              Home
+            </a>
           </li>
           <li>
             <a
@@ -23,7 +24,15 @@
             >
           </li>
           <li>
-            <button mat-raised-button color="primary">Sign Out</button>
+            <button
+              routerLink="/welcome"
+              routerLinkActive="active"
+              (click)="signOutHandler()"
+              mat-raised-button
+              color="primary"
+            >
+              Sign Out
+            </button>
           </li>
         </ul>
       </nav>
