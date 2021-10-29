@@ -4,6 +4,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialog } from '@angular/material/dialog';
 import { UserRegistrationService } from '../fetch-api-data.service';
 import { GenreViewComponent } from '../genre-view/genre-view.component';
+import { DirectorViewComponent } from '../director-view/director-view.component';
+import { SynopsisViewComponent } from '../synopsis-view/synopsis-view.component';
 
 @Component({
   selector: 'app-movie-card',
@@ -26,15 +28,20 @@ export class MovieCardComponent implements OnInit {
   }
 
   openGenreDialog(genre: object): void {
-    console.log('openGenreDialog: ', genre);
     this.dialog.open(GenreViewComponent, {
       data: genre,
     });
   }
   openDirectorDialog(director: object): void {
     console.log('openDirectorDialog: ', director);
+    this.dialog.open(DirectorViewComponent, {
+      data: director,
+    });
   }
-  openSynopsisDialog(details: string): void {
-    console.log('openSynopsisDialog: ', details);
+  openSynopsisDialog(movie: string): void {
+    console.log('openSynopsisDialog: ', movie);
+    this.dialog.open(SynopsisViewComponent, {
+      data: movie,
+    });
   }
 }
