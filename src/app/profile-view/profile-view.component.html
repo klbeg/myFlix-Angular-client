@@ -1,2 +1,59 @@
 <app-header></app-header>
-<p>profile-view works!</p>
+<mat-card>
+  <mat-card-header>
+    <h1>Edit Profile</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <form style="display: flex; flex-direction: column; width: 250px">
+      <h2>Change Info</h2>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Name"
+          name="Name"
+          type="text"
+          [(ngModel)]="userData.Name"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Username"
+          name="Username"
+          type="text"
+          [(ngModel)]="userData.Username"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Birthdate"
+          name="Birthdate"
+          type="date"
+          [(ngModel)]="userData.Birthdate"
+        />
+      </mat-form-field>
+    </form>
+    <form style="display: flex; flex-direction: column; width: 250px">
+      <h2>Change Password</h2>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="New Password"
+          name="New Password"
+          type="text"
+          [(ngModel)]="userData.NewPassword"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Change Password"
+          name="Change Password"
+          type="text"
+          [(ngModel)]="userData.ConfirmPassword"
+        />
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+</mat-card>
