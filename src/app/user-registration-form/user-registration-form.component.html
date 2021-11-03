@@ -11,7 +11,10 @@
           placeholder="Name"
           type="text"
           name="Name"
+          #name="ngModel"
           required
+          minlength="2"
+          pattern="[a-zA-Z]*"
         />
       </mat-form-field>
       <mat-form-field>
@@ -21,6 +24,9 @@
           placeholder="Username"
           type="text"
           name="Username"
+          #username="ngModel"
+          minlength="5"
+          pattern="[a-zA-Z0-9]*"
           required
         />
       </mat-form-field>
@@ -31,6 +37,9 @@
           placeholder="Password"
           type="password"
           name="Password"
+          #password="ngModel"
+          minlength="8"
+          pattern="[a-zA-Z0-9]*"
           required
         />
       </mat-form-field>
@@ -41,7 +50,10 @@
           placeholder="Email"
           type="email"
           name="Email"
+          #email="ngModel"
           required
+          email
+          (change)="log(email)"
         />
       </mat-form-field>
       <mat-form-field>
@@ -56,7 +68,54 @@
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button (click)="registerUser()" color="primary">
+    <div
+      class="error-box"
+      *ngIf="
+        (name.errors && name.touched) ||
+        (username.errors && username.touched) ||
+        (password.errors && password.touched) ||
+        (email.errors && email.touched)
+      "
+    >
+      <div style="font-weight: bold">Fix errors to submit form:</div>
+      <div *ngIf="name.touched && name.errors?.required">
+        - The name field is required
+      </div>
+      <div *ngIf="name.errors?.minlength">
+        - Name must be at least 2 characters in length
+      </div>
+      <div *ngIf="name.errors?.pattern">- Name may only contain letters</div>
+      <div *ngIf="username.touched && username.errors?.required">
+        - The username field is required
+      </div>
+      <div *ngIf="username.errors?.minlength">
+        - Username must be at least 5 characters in length
+      </div>
+      <div *ngIf="username.errors?.pattern">
+        - Username may only contain letters and numbers
+      </div>
+      <div *ngIf="password.touched && password.errors?.required">
+        - The password field is required
+      </div>
+      <div *ngIf="password.errors?.minlength">
+        - Password must be at least 8 characters in length
+      </div>
+      <div *ngIf="password.errors?.pattern">
+        - Password may only contain letters and numbers
+      </div>
+      <div *ngIf="email.touched && email.errors?.required">
+        - The email field is required
+      </div>
+      <div *ngIf="email.errors?.email">- Email must be a valid email</div>
+    </div>
+    <button
+      *ngIf="
+        !name.errors && !username.errors && !password.errors && !email.errors
+      "
+      mat-raised-button
+      (click)="registerUser()"
+      color="primary"
+    >
       Sign up
     </button>
   </mat-card-actions>

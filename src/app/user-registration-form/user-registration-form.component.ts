@@ -7,7 +7,10 @@ import { UserRegistrationService } from '../fetch-api-data.service';
 @Component({
   selector: 'app-user-registration-form',
   templateUrl: './user-registration-form.component.html',
-  styleUrls: ['./user-registration-form.component.scss'],
+  styleUrls: [
+    './user-registration-form.component.scss',
+    '../profile-view/profile-view.component.scss',
+  ],
 })
 export class UserRegistrationFormComponent implements OnInit {
   @Input() userData = {
@@ -25,6 +28,10 @@ export class UserRegistrationFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+
+  log = (x: any) => {
+    console.log(x);
+  };
 
   //  sends form inputs to the backend
   registerUser(): void {

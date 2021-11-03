@@ -27,7 +27,7 @@
           name="Username"
           #username="ngModel"
           minlength="5"
-          pattern="[a-zA-Z0-9_]*"
+          pattern="[a-zA-Z0-9]*"
           type="text"
           (change)="log(username)"
           [(ngModel)]="userData.Username"
@@ -63,7 +63,7 @@
           mat-raised-button
           color="primary"
           *ngIf="!name.errors && !username.errors"
-          (click)="log('form submitted')"
+          (click)="onUpdateUserInfo()"
         >
           Submit Changes
         </button>
@@ -95,11 +95,12 @@
         />
       </mat-form-field>
       <div *ngIf="password.errors || confirmPassword.errors" class="error-box">
+        <div style="font-weight: bold">Fix errors to submit form:</div>
         <div *ngIf="password.errors?.minlength">
-          Password must be at least 8 characters in length
+          - Password must be at least 8 characters in length
         </div>
         <div *ngIf="confirmPassword.errors?.pattern">
-          Both passwords must match.
+          - Both passwords must match.
         </div>
       </div>
       <button

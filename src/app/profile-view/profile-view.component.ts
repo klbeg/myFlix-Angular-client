@@ -35,4 +35,15 @@ export class ProfileViewComponent implements OnInit {
   log = (x: any) => {
     console.log(x);
   };
+
+  onUpdateUserInfo = () => {
+    console.log(
+      'Name: ',
+      this.userData.Name,
+      '.... Username: ',
+      this.userData.Username,
+      '...  Birthdate: ',
+      this.userData.Birthdate
+    );
+  };
 }
