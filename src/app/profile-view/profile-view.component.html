@@ -33,6 +33,10 @@
           [(ngModel)]="userData.Birthdate"
         />
       </mat-form-field>
+      <div>
+        <button mat-raised-button color="primary">Edit</button>
+        <button mat-raised-button color="primary">Submit Changes</button>
+      </div>
     </form>
     <form style="display: flex; flex-direction: column; width: 250px">
       <h2>Change Password</h2>
@@ -54,6 +58,11 @@
           [(ngModel)]="userData.ConfirmPassword"
         />
       </mat-form-field>
+      <div>
+        <button mat-raised-button color="primary">Edit</button>
+        <button mat-raised-button color="primary">Submit Changes</button>
+        <button mat-raised-button color="primary">Delete Account</button>
+      </div>
     </form>
   </mat-card-content>
 </mat-card>
