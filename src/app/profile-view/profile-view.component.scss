@@ -1,3 +1,18 @@
 form button {
   margin: 0 5px 10px;
+  width: 60%;
+}
+
+.error-box {
+  background-color: rgba(231, 83, 83, 0.212);
+  padding: 3px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border: 1px solid red;
+}
+
+form {
+  margin-bottom: 20px;
+  border-bottom: 1px solid black;
+  border-radius: 5px;
 }

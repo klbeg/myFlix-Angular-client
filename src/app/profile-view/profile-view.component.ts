@@ -31,4 +31,8 @@ export class ProfileViewComponent implements OnInit {
     const token: any = localStorage.getItem('token');
     this.token = token;
   }
+
+  log = (x: any) => {
+    console.log(x);
+  };
 }

@@ -11,16 +11,25 @@
           matInput
           placeholder="Name"
           name="Name"
+          #name="ngModel"
+          (change)="log(name)"
+          minlength="2"
+          pattern="[a-zA-Z]*"
           type="text"
           [(ngModel)]="userData.Name"
         />
       </mat-form-field>
+
       <mat-form-field>
         <input
           matInput
           placeholder="Username"
           name="Username"
+          #username="ngModel"
+          minlength="5"
+          pattern="[a-zA-Z0-9_]*"
           type="text"
+          (change)="log(username)"
           [(ngModel)]="userData.Username"
         />
       </mat-form-field>
@@ -34,8 +43,30 @@
         />
       </mat-form-field>
       <div>
-        <button mat-raised-button color="primary">Edit</button>
-        <button mat-raised-button color="primary">Submit Changes</button>
+        <div class="error-box" *ngIf="name.errors || username.errors">
+          <div style="font-weight: bold">Fix errors to submit form:</div>
+          <div *ngIf="name.errors?.minlength">
+            - Name must be at least 2 characters in length.
+          </div>
+          <div *ngIf="name.errors?.pattern">
+            - Name can only contain letters.
+          </div>
+          <div *ngIf="username.errors?.pattern">
+            - Username can only contain numbers and letters.
+          </div>
+          <div *ngIf="username.errors?.minlength">
+            - Username must be at least 5 characters long.
+          </div>
+        </div>
+
+        <button
+          mat-raised-button
+          color="primary"
+          *ngIf="!name.errors && !username.errors"
+          (click)="log('form submitted')"
+        >
+          Submit Changes
+        </button>
       </div>
     </form>
     <form style="display: flex; flex-direction: column; width: 250px">
@@ -46,23 +77,42 @@
           placeholder="New Password"
           name="New Password"
           type="text"
+          minlength="8"
+          #password="ngModel"
           [(ngModel)]="userData.NewPassword"
         />
       </mat-form-field>
       <mat-form-field>
         <input
           matInput
-          placeholder="Change Password"
-          name="Change Password"
+          placeholder="Confirm Password"
+          name="Confirm Password"
           type="text"
+          #confirmPassword="ngModel"
+          pattern="{{ password.value }}"
           [(ngModel)]="userData.ConfirmPassword"
+          (change)="log(confirmPassword)"
         />
       </mat-form-field>
-      <div>
-        <button mat-raised-button color="primary">Edit</button>
-        <button mat-raised-button color="primary">Submit Changes</button>
-        <button mat-raised-button color="primary">Delete Account</button>
+      <div *ngIf="password.errors || confirmPassword.errors" class="error-box">
+        <div *ngIf="password.errors?.minlength">
+          Password must be at least 8 characters in length
+        </div>
+        <div *ngIf="confirmPassword.errors?.pattern">
+          Both passwords must match.
+        </div>
       </div>
+      <button
+        *ngIf="password.valid && confirmPassword.valid"
+        mat-raised-button
+        color="primary"
+      >
+        Submit Changes
+      </button>
+    </form>
+    <form style="display: flex; flex-direction: column; width: 250px">
+      <h2>Delete Account</h2>
+      <button mat-raised-button color="primary">Delete</button>
     </form>
   </mat-card-content>
 </mat-card>
