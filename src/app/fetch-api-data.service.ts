@@ -131,11 +131,15 @@ export class UserRegistrationService {
     console.log(`username: ${username}  &  movieId: ${movieId}`);
     const token = localStorage.getItem('token');
     return this.http
-      .put(apiUrl + `/users/${username}/movies/${movieId}`, {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + token,
-        }),
-      })
+      .put(
+        apiUrl + `/users/${username}/movies/${movieId}`,
+        {},
+        {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + token,
+          }),
+        }
+      )
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 

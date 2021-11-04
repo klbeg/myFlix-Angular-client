@@ -1,9 +1,11 @@
 <app-header></app-header>
-<div style="display: flex">
+<div style="display: flex; width: 90%">
   <mat-card *ngFor="let movie of movies; let i = index">
-    <mat-dialog-content>
+    <mat-dialog-content class="movie-view-container">
       <mat-card-title>{{ movie.Title }}</mat-card-title>
-      <mat-card-subtitle><img src="{{ movie.ImagePath }}" /></mat-card-subtitle>
+      <mat-card-subtitle
+        ><img class="image" src="{{ movie.ImagePath }}"
+      /></mat-card-subtitle>
       <mat-card-actions>
         <button
           (click)="openGenreDialog(movie.Genre)"
@@ -26,7 +28,12 @@
         >
           Synopsis
         </button>
-        <mat-icon>favorite_border</mat-icon>
+        <mat-icon *ngIf="!filterFavs(movie._id)" (click)="onAddFav(movie._id)"
+          >favorite_border</mat-icon
+        >
+        <mat-icon *ngIf="filterFavs(movie._id)" (click)="onDeleteFav(movie._id)"
+          >favorite</mat-icon
+        >
       </mat-card-actions>
     </mat-dialog-content>
   </mat-card>
