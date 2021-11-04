@@ -1,7 +1,8 @@
 <app-header></app-header>
-<div style="display: flex; width: 90%">
-  <mat-card *ngFor="let movie of movies; let i = index">
-    <mat-dialog-content class="movie-view-container">
+
+<div class="movie-view-container">
+  <mat-card *ngFor="let movie of movies; let i = index" class="container-card">
+    <mat-dialog-content>
       <mat-card-title>{{ movie.Title }}</mat-card-title>
       <mat-card-subtitle
         ><img class="image" src="{{ movie.ImagePath }}"

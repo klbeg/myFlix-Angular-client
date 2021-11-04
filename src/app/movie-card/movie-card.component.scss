@@ -1,5 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+}
 .movie-view-container {
-  height: 100%;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 15px;
+}
+.container-card {
+  display: flex;
+  justify-content: center;
+  width: 350px;
+  margin: 5px auto;
+  height: 600px;
 }
 
 .image {
