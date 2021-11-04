@@ -36,12 +36,14 @@ export class MovieCardComponent implements OnInit {
       .subscribe((response): void => {
         this.user = response;
         this.userFavs = this.user.FavoriteMovies;
+        console.log('userFavs set');
       });
 
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
-      return this.movies;
+      localStorage.setItem('movies', JSON.stringify(resp));
     });
+
     const token: any = localStorage.getItem('token');
     this.token = token;
   }
