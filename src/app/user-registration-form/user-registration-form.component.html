@@ -38,7 +38,7 @@
           type="password"
           name="Password"
           #password="ngModel"
-          minlength="8"
+          minlength="7"
           pattern="[a-zA-Z0-9]*"
           required
         />
@@ -98,7 +98,7 @@
         - The password field is required
       </div>
       <div *ngIf="password.errors?.minlength">
-        - Password must be at least 8 characters in length
+        - Password must be at least 7 characters in length
       </div>
       <div *ngIf="password.errors?.pattern">
         - Password may only contain letters and numbers

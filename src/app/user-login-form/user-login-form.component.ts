@@ -9,7 +9,10 @@ import { UserRegistrationService } from '../fetch-api-data.service';
 @Component({
   selector: 'app-user-login-form',
   templateUrl: './user-login-form.component.html',
-  styleUrls: ['./user-login-form.component.scss'],
+  styleUrls: [
+    './user-login-form.component.scss',
+    '../profile-view/profile-view.component.scss',
+  ],
 })
 export class UserLoginFormComponent implements OnInit {
   @Input() userData = {

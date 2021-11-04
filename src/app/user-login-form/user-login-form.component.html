@@ -11,6 +11,7 @@
           placeholder="Username"
           type="text"
           name="Username"
+          #username="ngModel"
           required
         />
       </mat-form-field>
@@ -21,13 +22,34 @@
           placeholder="Password"
           type="password"
           name="Password"
+          #password="ngModel"
           required
         />
       </mat-form-field>
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button (click)="loginUser()" color="primary">
+    <div
+      *ngIf="
+        (username.touched && username.errors) ||
+        (password.touched && password.errors)
+      "
+      class="error-box"
+    >
+      <div style="font-weight: bold">Fix errors to submit form:</div>
+      <div *ngIf="username.touched && username.errors?.required">
+        - Username is required
+      </div>
+      <div *ngIf="password.touched && password.errors?.required">
+        - Password is required
+      </div>
+    </div>
+    <button
+      *ngIf="!username.errors && !password.errors"
+      mat-raised-button
+      (click)="loginUser()"
+      color="primary"
+    >
       Login
     </button>
   </mat-card-actions>

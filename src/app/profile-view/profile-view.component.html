@@ -12,14 +12,12 @@
           placeholder="Name"
           name="Name"
           #name="ngModel"
-          (change)="log(name)"
           minlength="2"
           pattern="[a-zA-Z]*"
           type="text"
           [(ngModel)]="userData.Name"
         />
       </mat-form-field>
-
       <mat-form-field>
         <input
           matInput
@@ -29,8 +27,18 @@
           minlength="5"
           pattern="[a-zA-Z0-9]*"
           type="text"
-          (change)="log(username)"
           [(ngModel)]="userData.Username"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Email"
+          name="Email"
+          #email="ngModel"
+          type="email"
+          email
+          [(ngModel)]="userData.Email"
         />
       </mat-form-field>
       <mat-form-field>
@@ -39,11 +47,15 @@
           placeholder="Birthdate"
           name="Birthdate"
           type="date"
+          #birthdate="ngModel"
           [(ngModel)]="userData.Birthdate"
         />
       </mat-form-field>
       <div>
-        <div class="error-box" *ngIf="name.errors || username.errors">
+        <div
+          class="error-box"
+          *ngIf="name.errors || username.errors || email.errors"
+        >
           <div style="font-weight: bold">Fix errors to submit form:</div>
           <div *ngIf="name.errors?.minlength">
             - Name must be at least 2 characters in length.
@@ -57,12 +69,18 @@
           <div *ngIf="username.errors?.minlength">
             - Username must be at least 5 characters long.
           </div>
+          <div *ngIf="email.errors?.email">- Email must be valid email</div>
         </div>
 
         <button
           mat-raised-button
           color="primary"
-          *ngIf="!name.errors && !username.errors"
+          *ngIf="
+            (name.value && !name.errors) ||
+            (username.value && !username.errors) ||
+            (email.value && !email.errors) ||
+            birthdate.value
+          "
           (click)="onUpdateUserInfo()"
         >
           Submit Changes
@@ -76,10 +94,10 @@
           matInput
           placeholder="New Password"
           name="New Password"
-          type="text"
-          minlength="8"
+          type="password"
+          minlength="7"
           #password="ngModel"
-          [(ngModel)]="userData.NewPassword"
+          [(ngModel)]="updatePass.Password"
         />
       </mat-form-field>
       <mat-form-field>
@@ -87,24 +105,29 @@
           matInput
           placeholder="Confirm Password"
           name="Confirm Password"
-          type="text"
+          type="password"
           #confirmPassword="ngModel"
           pattern="{{ password.value }}"
-          [(ngModel)]="userData.ConfirmPassword"
-          (change)="log(confirmPassword)"
+          ngModel
         />
       </mat-form-field>
       <div *ngIf="password.errors || confirmPassword.errors" class="error-box">
         <div style="font-weight: bold">Fix errors to submit form:</div>
         <div *ngIf="password.errors?.minlength">
-          - Password must be at least 8 characters in length
+          - Password must be at least 7 characters in length
         </div>
         <div *ngIf="confirmPassword.errors?.pattern">
           - Both passwords must match.
         </div>
       </div>
       <button
-        *ngIf="password.valid && confirmPassword.valid"
+        *ngIf="
+          password.value &&
+          confirmPassword.value &&
+          password.valid &&
+          confirmPassword.valid
+        "
+        (click)="onUpdatePassword()"
         mat-raised-button
         color="primary"
       >
@@ -113,7 +136,9 @@
     </form>
     <form style="display: flex; flex-direction: column; width: 250px">
       <h2>Delete Account</h2>
-      <button mat-raised-button color="primary">Delete</button>
+      <button mat-raised-button color="primary" (click)="onDeleteUser()">
+        Delete
+      </button>
     </form>
   </mat-card-content>
 </mat-card>

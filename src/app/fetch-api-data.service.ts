@@ -22,7 +22,6 @@ export class UserRegistrationService {
 
   //  user registration
   public userRegistration(userDetails: any): Observable<any> {
-    console.log(userDetails);
     return this.http
       .post(apiUrl + '/users', userDetails)
       .pipe(catchError(this.handleError));
@@ -30,7 +29,6 @@ export class UserRegistrationService {
 
   //  user login
   public userLogin(Username: any, Password: any): Observable<any> {
-    console.log(`Username: ${Username}  &  Password: ${Password}`);
     return this.http
       .post(apiUrl + '/login', { Username, Password })
       .pipe(catchError(this.handleError));
@@ -155,29 +153,30 @@ export class UserRegistrationService {
   }
 
   //  edit user's info ** DOES NOT INCLUDE PASSWORD
-  public editUserInfo(username: any, updateInfo: any): Observable<any> {
+  public editUserInfo(username: string, updateInfo: object): Observable<any> {
     console.log(`username: ${username}  &  updateInfo: ${updateInfo}`);
     const token = localStorage.getItem('token');
     return this.http
-      .put(apiUrl + `/users/${username}`, {
+      .put(apiUrl + `/users/${username}`, updateInfo, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
-        updateInfo,
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
   //  update user's password
-  public updatePassword(username: any, newPassword: any): Observable<any> {
+  public updatePassword(
+    username: string,
+    newPassword: object
+  ): Observable<any> {
     console.log(`username: ${username} &  newPassword: ${newPassword}`);
     const token = localStorage.getItem('token');
     return this.http
-      .put(apiUrl + `/users/${username}/changePass`, {
+      .put(apiUrl + `/users/${username}/changePass`, newPassword, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
-        newPassword,
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
