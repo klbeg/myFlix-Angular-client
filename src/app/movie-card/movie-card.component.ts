@@ -6,6 +6,7 @@ import { UserRegistrationService } from '../fetch-api-data.service';
 import { GenreViewComponent } from '../genre-view/genre-view.component';
 import { DirectorViewComponent } from '../director-view/director-view.component';
 import { SynopsisViewComponent } from '../synopsis-view/synopsis-view.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-movie-card',
@@ -20,7 +21,8 @@ export class MovieCardComponent implements OnInit {
 
   constructor(
     public fetchApiData: UserRegistrationService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -75,26 +77,42 @@ export class MovieCardComponent implements OnInit {
 
   onAddFav = (x: string): void => {
     let updateFavArr: string[] = [];
-    this.fetchApiData
-      .addFavoriteMovie(this.user.Username, x)
-      .subscribe((response) => {
+    this.fetchApiData.addFavoriteMovie(this.user.Username, x).subscribe(
+      (response) => {
         response.forEach((movie: any): any => {
           updateFavArr.push(movie._id);
         });
         this.userFavs = updateFavArr;
-      });
+        this.snackBar.open('A movie has been added to your favorites!', 'OK', {
+          duration: 2000,
+        });
+      },
+      (result) => {
+        this.snackBar.open(result, 'OK', {
+          duration: 2000,
+        });
+      }
+    );
     //  add snackbar "movie.Title has been added to your favorites"
   };
   onDeleteFav = (x: string): void => {
     let updateFavArr: string[] = [];
-    this.fetchApiData
-      .deleteFavoriteMovie(this.user.Username, x)
-      .subscribe((response) => {
+    this.fetchApiData.deleteFavoriteMovie(this.user.Username, x).subscribe(
+      (response) => {
         response.forEach((movie: any): any => {
           updateFavArr.push(movie._id);
         });
         this.userFavs = updateFavArr;
-        console.log(this.userFavs);
-      });
+        this.snackBar.open(
+          'A movie has been removed from your favorites!',
+          'OK'
+        );
+      },
+      (response) => {
+        this.snackBar.open(response, 'OK', {
+          duration: 2000,
+        });
+      }
+    );
   };
 }
