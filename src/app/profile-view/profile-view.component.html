@@ -87,10 +87,7 @@
         </button>
       </div>
     </form>
-    <form
-      class="form-container"
-      style="display: flex; flex-direction: column; width: 250px"
-    >
+    <form class="form-container">
       <h2>Change Password</h2>
       <mat-form-field>
         <input
@@ -139,37 +136,18 @@
     </form>
     <div>
       <h2>Edit Favorite Movies</h2>
-      <mat-card
-        *ngFor="let movie of favMovies"
-        style="display: flex; justify-content: center; margin: 10px 0"
-      >
-        <mat-dialog-content
-          style="
-            display: flex;
-            align-items: center;
-            width: 100%;
-            justify-content: space-between;
-          "
-        >
-          <mat-card-title
-            style="
-              font-size: 18px;
-              display: flex;
-              justify-content: center;
-              margin-bottom: 0 !important;
-            "
-            >{{ movie.Title }}</mat-card-title
-          >
+      <mat-card *ngFor="let movie of favMovies" style="margin: 10px 0">
+        <mat-dialog-content class="flex-center movie-container">
+          <mat-card-title class="flex-center movie-title">{{
+            movie.Title
+          }}</mat-card-title>
           <button (click)="onDeleteFav(movie._id)" mat-button color="primary">
             Delete
           </button>
         </mat-dialog-content>
       </mat-card>
     </div>
-    <form
-      class="form-container"
-      style="display: flex; flex-direction: column; width: 250px"
-    >
+    <form class="form-container">
       <h2>Delete Account</h2>
       <button mat-raised-button color="primary" (click)="onDeleteUser()">
         Delete
