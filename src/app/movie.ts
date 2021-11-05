@@ -1,8 +1,3 @@
-import { Title } from '@angular/platform-browser';
-/**
- * creates genre to be used in Movies
- *
- */
 class Genre {
   Name: string;
   Description: string;

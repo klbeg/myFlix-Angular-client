@@ -122,6 +122,11 @@ export class ProfileViewComponent implements OnInit {
       }
     );
   };
+
+  /**
+   * Deletes movie from a user's favorites
+   * @param x movie ID used find movie to delete
+   */
   onDeleteFav = (x: string): void => {
     let updateFavArr: Movie[] = [];
     this.fetchApiData.deleteFavoriteMovie(this.user.Username, x).subscribe(
