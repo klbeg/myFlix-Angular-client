@@ -4,6 +4,7 @@ import { MatCard } from '@angular/material/card';
 import { MatButton } from '@angular/material/button';
 import { filter } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Movie } from '../movie';
 
 @Component({
   selector: 'app-profile-view',
@@ -23,8 +24,8 @@ export class ProfileViewComponent implements OnInit {
 
   user: any = {};
   token: string = '';
-  movies: object[] = [];
-  favMovies: any[] = [];
+  movies: Movie[] = [];
+  favMovies: Movie[] = [];
   constructor(
     public fetchApiData: UserRegistrationService,
     public snackBar: MatSnackBar
@@ -42,11 +43,11 @@ export class ProfileViewComponent implements OnInit {
         this.user = response;
         console.log(this.user);
         const movies = localStorage.getItem('movies');
-        let favMovieObjects: object[] = [];
+        let favMovieObjects: Movie[] = [];
         if (typeof movies === 'string') {
           const parse = JSON.parse(movies);
           this.movies = parse;
-          let favMovieObjs: object[] = [];
+          let favMovieObjs: Movie[] = [];
           this.movies.filter((movie: any) => {
             if (this.user.FavoriteMovies.includes(movie._id)) {
               favMovieObjects.push(movie);
@@ -120,7 +121,7 @@ export class ProfileViewComponent implements OnInit {
     );
   };
   onDeleteFav = (x: string): void => {
-    let updateFavArr: string[] = [];
+    let updateFavArr: Movie[] = [];
     this.fetchApiData.deleteFavoriteMovie(this.user.Username, x).subscribe(
       (response) => {
         response.forEach((movie: any): any => {
