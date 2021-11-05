@@ -5,6 +5,7 @@ import { MatButton } from '@angular/material/button';
 import { filter } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Movie } from '../movie';
+import { User } from '../user';
 
 @Component({
   selector: 'app-profile-view',
@@ -34,12 +35,13 @@ export class ProfileViewComponent implements OnInit {
   ngOnInit(): void {
     const user = localStorage.getItem('user');
     if (typeof user === 'string') {
-      const parse = JSON.parse(user);
+      const parse: User = JSON.parse(user);
       this.user = parse;
+      console.log(this.user);
     }
     this.fetchApiData
       .getUser(this.user.Username)
-      .subscribe((response): void => {
+      .subscribe((response: User): void => {
         this.user = response;
         console.log(this.user);
         const movies = localStorage.getItem('movies');
@@ -71,7 +73,7 @@ export class ProfileViewComponent implements OnInit {
     let filteredObj = Object.fromEntries(filteredArr);
 
     this.fetchApiData.editUserInfo(this.user.Username, filteredObj).subscribe(
-      (result) => {
+      (result: User) => {
         this.user = result;
 
         localStorage.setItem('user', JSON.stringify(result));
