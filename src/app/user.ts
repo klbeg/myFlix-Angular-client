@@ -1,3 +1,6 @@
+/**
+ * Full user class to be used to specify data types
+ */
 export class User {
   _id: string;
   FavoriteMovies: string[];

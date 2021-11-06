@@ -52,23 +52,40 @@ export class MovieCardComponent implements OnInit {
     console.log(x);
   };
 
+  /**
+   * Takes movie's genre and displays details in modal
+   * @param genre contains Name and Description
+   */
   openGenreDialog(genre: object): void {
     this.dialog.open(GenreViewComponent, {
       data: genre,
     });
   }
+  /**
+   * Takes a movie's director and displays details in modal
+   * @param director contains name, bio, birth year and death year
+   */
   openDirectorDialog(director: object): void {
     console.log('openDirectorDialog: ', director);
     this.dialog.open(DirectorViewComponent, {
       data: director,
     });
   }
+  /**
+   * Displays a description of the selected movie in modal
+   * @param movie Full movie object
+   */
   openSynopsisDialog(movie: string): void {
     console.log('openSynopsisDialog: ', movie);
     this.dialog.open(SynopsisViewComponent, {
       data: movie,
     });
   }
+  /**
+   * Used to determine wether a movie has been favorited by user
+   * @param x The selected movie's ID
+   * @returns Boolean.  True === user has favorited selected movie
+   */
   filterFavs = (x: string): boolean => {
     let result: boolean = false;
     this.userFavs.filter((movie): any => {
@@ -76,7 +93,11 @@ export class MovieCardComponent implements OnInit {
     });
     return result;
   };
-
+  /**
+   * Adds selected movie to user's list of favorites
+   * displays success message in snackbar
+   * @param x Selected movie's ID
+   */
   onAddFav = (x: string): void => {
     let updateFavArr: string[] = [];
     this.fetchApiData.addFavoriteMovie(this.user.Username, x).subscribe(
@@ -85,7 +106,7 @@ export class MovieCardComponent implements OnInit {
           updateFavArr.push(movie._id);
         });
         this.userFavs = updateFavArr;
-        this.snackBar.open('A movie has been added to your favorites!', 'OK', {
+        this.snackBar.open('Your movie has been added to favorites!', 'OK', {
           duration: 2000,
         });
       },
@@ -95,8 +116,12 @@ export class MovieCardComponent implements OnInit {
         });
       }
     );
-    //  add snackbar "movie.Title has been added to your favorites"
   };
+  /**
+   * Delete's selected movie from user's favorites
+   * displays success message in snackbar
+   * @param x Selected movie's ID
+   */
   onDeleteFav = (x: string): void => {
     let updateFavArr: string[] = [];
     this.fetchApiData.deleteFavoriteMovie(this.user.Username, x).subscribe(

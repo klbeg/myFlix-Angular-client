@@ -31,7 +31,11 @@ export class ProfileViewComponent implements OnInit {
     public fetchApiData: UserRegistrationService,
     public snackBar: MatSnackBar
   ) {}
-
+  /**
+   * Get's username from localstorage, then get's user from backend
+   * creates full movie objects for favorite movies
+   * set's user info to "this.user" and favs to "favMovies"
+   */
   ngOnInit(): void {
     const user = localStorage.getItem('user');
     if (typeof user === 'string') {
@@ -62,11 +66,11 @@ export class ProfileViewComponent implements OnInit {
     const token: any = localStorage.getItem('token');
     this.token = token;
   }
-
-  log = (x: any) => {
-    console.log(x);
-  };
-
+  /**
+   * Filters out any inputs that have been left blank and
+   * sents put request to change updated info in DB
+   * displays success message as snackbar
+   */
   onUpdateUserInfo = () => {
     const updateArr = Object.entries(this.userData);
     let filteredArr = updateArr.filter((item) => item[1].length);
@@ -88,7 +92,9 @@ export class ProfileViewComponent implements OnInit {
       }
     );
   };
-
+  /**
+   *  updates user password and displays success message as snackbar
+   */
   onUpdatePassword = () => {
     let pass: object = { Password: this.updatePass.Password };
 
@@ -105,7 +111,9 @@ export class ProfileViewComponent implements OnInit {
       }
     );
   };
-
+  /**
+   *  Deletes the user's account, displays success message as snackbar
+   */
   onDeleteUser = () => {
     this.fetchApiData.deleteUser(this.user.Username).subscribe(
       () => {
@@ -124,7 +132,9 @@ export class ProfileViewComponent implements OnInit {
   };
 
   /**
-   * Deletes movie from a user's favorites
+   * Takes ID of selected movie and deletes it
+   * from user's favorites
+   * displays success message as snackbar
    * @param x movie ID used find movie to delete
    */
   onDeleteFav = (x: string): void => {

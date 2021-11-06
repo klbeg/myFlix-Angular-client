@@ -33,7 +33,10 @@ export class UserRegistrationFormComponent implements OnInit {
     console.log(x);
   };
 
-  //  sends form inputs to the backend
+  /**
+   * Takes info from registration form and creates a new user in backend
+   * displays success as snackbar
+   */
   registerUser(): void {
     this.fetchApiData.userRegistration(this.userData).subscribe(
       (result) => {

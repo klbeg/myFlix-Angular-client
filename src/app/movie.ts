@@ -1,11 +1,17 @@
-class Genre {
+/**
+ * Genre for use in Movie class
+ */
+export class Genre {
   Name: string;
   Description: string;
   constructor(name: string, description: string) {
     (this.Name = name), (this.Description = description);
   }
 }
-class Director {
+/**
+ * Director for use in Movie class
+ */
+export class Director {
   Name: string;
   Bio: string;
   Image: string;
@@ -14,7 +20,9 @@ class Director {
     (this.Name = name), (this.Bio = bio), (this.Image = image);
   }
 }
-
+/**
+ * Full movie object to be used to specify data types
+ */
 export class Movie {
   Title: string;
   Description: string;

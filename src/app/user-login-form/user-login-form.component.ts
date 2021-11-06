@@ -28,7 +28,10 @@ export class UserLoginFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
-
+  /**
+   * Uses username and password to log user in
+   * displays success message as snackbar
+   */
   loginUser(): void {
     this.fetchApiData
       .userLogin(this.userData.Username, this.userData.Password)
