@@ -265,7 +265,7 @@ export class UserRegistrationService {
         `Error Status code ${error.status}.  Error body is: ${error.error}`
       );
     }
-    return throwError('Something bad happened; please try again later.');
+    return throwError('Something bad happened, please try again later.');
   }
 }
 
