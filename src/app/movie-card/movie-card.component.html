@@ -1,7 +1,10 @@
 <app-header></app-header>
 
-<div class="movie-view-container">
-  <mat-card *ngFor="let movie of movies; let i = index" class="container-card">
+<div class="movie-view-container background_primary">
+  <mat-card
+    *ngFor="let movie of movies; let i = index"
+    class="container-card component-background"
+  >
     <mat-dialog-content>
       <mat-card-title>{{ movie.Title }}</mat-card-title>
       <mat-card-subtitle
@@ -11,21 +14,21 @@
         <button
           (click)="openGenreDialog(movie.Genre)"
           mat-raised-button
-          color="primary"
+          class="button_primary"
         >
           Genre
         </button>
         <button
           (click)="openDirectorDialog(movie.Director)"
           mat-raised-button
-          color="primary"
+          class="button_primary"
         >
           Director
         </button>
         <button
           (click)="openSynopsisDialog(movie)"
           mat-raised-button
-          color="primary"
+          class="button_primary"
         >
           Synopsis
         </button>

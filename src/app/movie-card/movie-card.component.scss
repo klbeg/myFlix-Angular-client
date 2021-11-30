@@ -13,11 +13,11 @@
   display: flex;
   justify-content: center;
   width: 350px;
-  margin: 5px auto 0px;
+  margin: 10px auto 10px;
   height: 600px;
 }
 .mat-card-title {
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
 .image {
   height: 500px;
@@ -27,4 +27,8 @@
   margin: 0 auto;
   display: flex;
   justify-content: center;
+}
+
+.mat-icon:hover {
+  cursor: pointer;
 }
