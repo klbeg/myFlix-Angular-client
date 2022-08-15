@@ -9,7 +9,7 @@ import { SynopsisViewComponent } from '../synopsis-view/synopsis-view.component'
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-movie-card',
+  selector: 'movie-view-container',
   templateUrl: './movie-card.component.html',
   styleUrls: ['./movie-card.component.scss'],
 })

@@ -5,7 +5,7 @@
     *ngFor="let movie of movies; let i = index"
     class="container-card component-background"
   >
-    <mat-dialog-content>
+    <mat-card-content>
       <mat-card-title>{{ movie.Title }}</mat-card-title>
       <mat-card-subtitle
         ><img class="image" src="{{ movie.ImagePath }}"
@@ -39,6 +39,6 @@
           >favorite</mat-icon
         >
       </mat-card-actions>
-    </mat-dialog-content>
+    </mat-card-content>
   </mat-card>
 </div>
