@@ -61,8 +61,10 @@
           matInput
           [(ngModel)]="userData.Birthdate"
           type="date"
+          #birthdate="ngModel"
           placeholder="Birthdate"
           name="Birthdate"
+          required
         />
       </mat-form-field>
     </form>
